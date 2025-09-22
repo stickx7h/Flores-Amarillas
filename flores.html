@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 2;
+            padding-top: 8vh;
+        }
+
+        .titulo {
+            color: #FFD700;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: brillo 2s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes brillo {
+            0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 10px #FFD700; }
+            100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px #FFD700, 0 0 30px #FFD700; }
+        }
+
+        .ramo {
+            position: relative;
+            animation: aparecer 3s ease-out;
+            margin-top: 2rem;
+        }
+
+        @keyframes aparecer {
+            0% {
+                opacity: 0;
+                transform: translateY(100px) scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .tallo {
+            width: 10px;
+            height: 180px;
+            background: linear-gradient(to bottom, #228B22, #32CD32, #228B22);
+            margin: 0 auto;
+            border-radius: 5px;
+            position: relative;
+            animation: crecer 2s ease-out 1s both;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.2);
+        }
+
+        @keyframes crecer {
+            0% { height: 0; }
+            100% { height: 180px; }
+        }
+
+        .flores {
+            position: absolute;
+            top: -160px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 160px;
+        }
+
+        .flor {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        /* Fila superior - 2 flores */
+        .flor:nth-child(1) {
+            top: 20px;
+            left: 80px;
+            animation-delay: 2s;
+            z-index: 5;
+        }
+
+        .flor:nth-child(2) {
+            top: 15px;
+            left: 150px;
+            animation-delay: 2.2s;
+            z-index: 5;
+        }
+
+        /* Fila media - 3 flores */
+        .flor:nth-child(3) {
+            top: 65px;
+            left: 50px;
+            animation-delay: 2.4s;
+            z-index: 4;
+        }
+
+        .flor:nth-child(4) {
+            top: 60px;
+            left: 115px;
+            animation-delay: 2.6s;
+            z-index: 6;
+        }
+
+        .flor:nth-child(5) {
+            top: 65px;
+            left: 180px;
+            animation-delay: 2.8s;
+            z-index: 4;
+        }
+
+        /* Fila inferior - 2 flores */
+        .flor:nth-child(6) {
+            top: 110px;
+            left: 80px;
+            animation-delay: 3s;
+            z-index: 3;
+        }
+
+        .flor:nth-child(7) {
+            top: 105px;
+            left: 150px;
+            animation-delay: 3.2s;
+            z-index: 3;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        .petalo {
+            position: absolute;
+            width: 18px;
+            height: 30px;
+            background: linear-gradient(to bottom, #FFD700, #FFA500);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform-origin: center bottom;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .petalo:nth-child(1) { transform: rotate(0deg) translateY(-15px); }
+        .petalo:nth-child(2) { transform: rotate(45deg) translateY(-15px); }
+        .petalo:nth-child(3) { transform: rotate(90deg) translateY(-15px); }
+        .petalo:nth-child(4) { transform: rotate(135deg) translateY(-15px); }
+        .petalo:nth-child(5) { transform: rotate(180deg) translateY(-15px); }
+        .petalo:nth-child(6) { transform: rotate(225deg) translateY(-15px); }
+        .petalo:nth-child(7) { transform: rotate(270deg) translateY(-15px); }
+        .petalo:nth-child(8) { transform: rotate(315deg) translateY(-15px); }
+
+        .centro {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, #8B4513, #654321);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hojas {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hoja {
+            position: absolute;
+            width: 25px;
+            height: 40px;
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            border-radius: 0 100% 0 100%;
+            animation: mover-hoja 4s ease-in-out infinite;
+        }
+
+        .hoja:nth-child(1) {
+            left: -40px;
+            top: -10px;
+            transform: rotate(-35deg);
+            animation-delay: 3.5s;
+        }
+
+        .hoja:nth-child(2) {
+            right: -40px;
+            top: -10px;
+            transform: rotate(35deg);
+            animation-delay: 3.7s;
+        }
+
+        .hoja:nth-child(3) {
+            left: -25px;
+            bottom: 15px;
+            transform: rotate(-50deg);
+            animation-delay: 3.9s;
+        }
+
+        .hoja:nth-child(4) {
+            right: -25px;
+            bottom: 15px;
+            transform: rotate(50deg);
+            animation-delay: 4.1s;
+        }
+
+        .hoja:nth-child(5) {
+            left: -50px;
+            bottom: 40px;
+            transform: rotate(-20deg);
+            animation-delay: 4.3s;
+        }
+
+        .hoja:nth-child(6) {
+            right: -50px;
+            bottom: 40px;
+            transform: rotate(20deg);
+            animation-delay: 4.5s;
+        }
+
+        @keyframes mover-hoja {
+            0%, 100% { transform: rotate(var(--rotation)) scale(1); }
+            50% { transform: rotate(calc(var(--rotation) + 10deg)) scale(1.1); }
+        }
+
+        /* Estrellas */
+        .estrella {
+            position: absolute;
+            color: white;
+            font-size: 10px;
+            animation: parpadear 2s ease-in-out infinite;
+        }
+
+        @keyframes parpadear {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .estrella-movil {
+            position: absolute;
+            color: #FFD700;
+            font-size: 12px;
+            animation: mover-estrella 8s linear infinite;
+        }
+
+        .estrella-movil.grande {
+            font-size: 16px;
+        }
+
+        .estrella-movil.pequeña {
+            font-size: 8px;
+        }
+
+        @keyframes mover-estrella {
+            0% {
+                transform: translateX(-100px) translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(-80px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .estrella-diagonal {
+            position: absolute;
+            color: #FFD700;
+            font-size: 10px;
+            animation: mover-diagonal 10s linear infinite;
+        }
+
+        @keyframes mover-diagonal {
+            0% {
+                transform: translate(-50px, 100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(100vw + 50px), -100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .corazon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #FFD700;
+            font-size: 2rem;
+            animation: latido 1.5s ease-in-out infinite;
+        }
+
+        @keyframes latido {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="corazon">💖</div>
+    
+    <div class="container">
+        <h1 class="titulo">Para Mi Princesa Hermosa, Te Amo Amor 💛</h1>
+        
+        <div class="ramo">
+            <div class="flores">
+                <div class="flor">
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="centro"></div>
+                </div>
+                <div class="flor">
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="centro"></div>
+                </div>
+                <div class="flor">
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="centro"></div>
+                </div>
+                <div class="flor">
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="centro"></div>
+                </div>
+                <div class="flor">
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="centro"></div>
+                </div>
+                <div class="flor">
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="centro"></div>
+                </div>
+                <div class="flor">
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="petalo"></div>
+                    <div class="centro"></div>
+                </div>
+            </div>
+            
+            <div class="tallo">
+                <div class="hojas">
+                    <div class="hoja" style="--rotation: -35deg;"></div>
+                    <div class="hoja" style="--rotation: 35deg;"></div>
+                    <div class="hoja" style="--rotation: -50deg;"></div>
+                    <div class="hoja" style="--rotation: 50deg;"></div>
+                    <div class="hoja" style="--rotation: -20deg;"></div>
+                    <div class="hoja" style="--rotation: 20deg;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear estrellas fijas
+        function crearEstrellasFijas() {
+            const numEstrellas = 60;
+            for (let i = 0; i < numEstrellas; i++) {
+                const estrella = document.createElement('div');
+                estrella.className = 'estrella';
+                estrella.innerHTML = '✨';
+                estrella.style.left = Math.random() * 100 + '%';
+                estrella.style.top = Math.random() * 100 + '%';
+                estrella.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(estrella);
+            }
+        }
+
+        // Crear estrellas que se mueven horizontalmente
+        function crearEstrellaMovil() {
+            const estrella = document.createElement('div');
+            const tipos = ['⭐', '✨', '🌟', '💫'];
+            const tamaños = ['pequeña', '', 'grande'];
+            
+            estrella.className = 'estrella-movil ' + tamaños[Math.floor(Math.random() * tamaños.length)];
+            estrella.innerHTML = tipos[Math.floor(Math.random() * tipos.length)];
+            estrella.style.top = Math.random() * window.innerHeight + 'px';
+            estrella.style.left = '-50px';
+            estrella.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            document.body.appendChild(estrella);
+
+            // Eliminar la estrella después de la animación
+            setTimeout(() => {
+                if (estrella.parentNode) {
+                    estrella.parentNode.removeChild(estrella);
+                }
+            }, 12000);
+        }
+
+        // Crear estrellas que se mueven en diagonal
+        function crearEstrellaDiagonal() {
+            const estrella = document.createElement('div');
+            const tipos = ['⭐', '✨', '🌟'];
+            
+            estrella.className = 'estrella-diagonal';
+            estrella.innerHTML = tipos[Math.floor(Math.random() * tipos.length)];
+            estrella.style.left = Math.random() * 100 + 'px';
+            estrella.style.animationDuration = (Math.random() * 5 + 8) + 's';
+            document.body.appendChild(estrella);
+
+            // Eliminar la estrella después de la animación
+            setTimeout(() => {
+                if (estrella.parentNode) {
+                    estrella.parentNode.removeChild(estrella);
+                }
+            }, 15000);
+        }
+
+        // Inicializar
+        crearEstrellasFijas();
+
+        // Crear estrellas móviles horizontales cada 1.5 segundos
+        setInterval(crearEstrellaMovil, 1500);
+
+        // Crear estrellas diagonales cada 3 segundos
+        setInterval(crearEstrellaDiagonal, 3000);
+
+        // Crear algunas estrellas móviles al inicio
+        setTimeout(crearEstrellaMovil, 2000);
+        setTimeout(crearEstrellaMovil, 3500);
+        setTimeout(crearEstrellaDiagonal, 4000);
+        setTimeout(crearEstrellaMovil, 5000);
+        setTimeout(crearEstrellaDiagonal, 6500);
+    </script>
+</body>
+</html>
